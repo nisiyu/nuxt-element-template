@@ -33,6 +33,29 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+    },
+    // vendor: [ 'element-ui' ], if include vendor it will be compiled into a static file
+    babel: {
+      "presets": [
+        ["env", {
+          "modules": false,
+          "targets": {
+            "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
+          }
+        }],
+        "stage-2"
+      ],
+      "plugins": [
+        "transform-runtime",
+        ["component", [
+          {
+            "libraryName": "element-ui",
+            "styleLibraryName": "../../../node_modules/element-theme-heyshop/theme"
+          }
+      ]]]
     }
-  }
+  },
+  plugins: [
+    { src: '~/plugins/element-ui', ssr: true }
+  ]
 }
